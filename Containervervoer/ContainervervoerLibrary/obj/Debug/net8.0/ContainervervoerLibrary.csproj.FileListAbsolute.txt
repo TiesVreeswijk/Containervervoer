@@ -1,0 +1,12 @@
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\bin\Debug\net8.0\ContainervervoerLibrary.deps.json
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\bin\Debug\net8.0\ContainervervoerLibrary.dll
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\bin\Debug\net8.0\ContainervervoerLibrary.pdb
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.AssemblyInfoInputs.cache
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.AssemblyInfo.cs
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.sourcelink.json
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.dll
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\refint\ContainervervoerLibrary.dll
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.pdb
+C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ref\ContainervervoerLibrary.dll

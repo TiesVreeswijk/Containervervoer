@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Containervervoer/1.0.0": {
+        "dependencies": {
+          "ContainervervoerLibrary": "1.0.0"
+        },
+        "runtime": {
+          "Containervervoer.dll": {}
+        }
+      },
+      "ContainervervoerLibrary/1.0.0": {
+        "runtime": {
+          "ContainervervoerLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Containervervoer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ContainervervoerLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
