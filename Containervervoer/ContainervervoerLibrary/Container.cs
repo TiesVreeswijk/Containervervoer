@@ -10,6 +10,8 @@ public class Container() {
 
     public Container(int weight, bool valuable, bool cooled) : this()
     {
-        
+        Weight = weight;
+        Valuable = valuable;
+        Cooled = cooled;
     }
 }
