@@ -1,3 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using ContainervervoerLibrary;
 
-Console.WriteLine("Hello, World!");
+Ship ship = new Ship(2,2);
+
+List<Container> containers = [];
+
+//add containers to the list
+
+ship.DistributeContainers(containers);

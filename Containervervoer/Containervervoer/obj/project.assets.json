@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "ContainervervoerLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ContainervervoerLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ContainervervoerLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ContainervervoerLibrary/1.0.0": {
+      "type": "project",
+      "path": "../ContainervervoerLibrary/ContainervervoerLibrary.csproj",
+      "msbuildProject": "../ContainervervoerLibrary/ContainervervoerLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "ContainervervoerLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Ties\\.nuget\\packages\\": {},
@@ -39,7 +58,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Ties\\RiderProjects\\ContainerTransport\\Containervervoer\\ContainervervoerLibrary\\ContainervervoerLibrary.csproj": {
+              "projectPath": "C:\\Users\\Ties\\RiderProjects\\ContainerTransport\\Containervervoer\\ContainervervoerLibrary\\ContainervervoerLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
