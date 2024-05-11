@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Containervervoer", "Containervervoer\Containervervoer.csproj", "{39094054-5A8A-499D-8C6D-2687E457D9DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainervervoerLibrary", "ContainervervoerLibrary\ContainervervoerLibrary.csproj", "{699A5861-EBC2-4A40-9BDF-832BABE5B898}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{39094054-5A8A-499D-8C6D-2687E457D9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39094054-5A8A-499D-8C6D-2687E457D9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39094054-5A8A-499D-8C6D-2687E457D9DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699A5861-EBC2-4A40-9BDF-832BABE5B898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699A5861-EBC2-4A40-9BDF-832BABE5B898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699A5861-EBC2-4A40-9BDF-832BABE5B898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699A5861-EBC2-4A40-9BDF-832BABE5B898}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
