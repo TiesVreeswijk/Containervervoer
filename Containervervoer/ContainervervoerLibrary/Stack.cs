@@ -25,9 +25,6 @@ public class Stack
                 return false;  
             }
 
-            if(ship.LastPlacementSide == Ship.Side.Left) ship.LeftWeight += container.Weight;
-            else if (ship.LastPlacementSide == Ship.Side.Right) ship.RightWeight += container.Weight;
-
             Containers.Add(container);
             return true;
 
@@ -35,8 +32,6 @@ public class Stack
 
         if (!TooMuchWeightAbove(0, 0) && (Containers.Count == 0 || container.Weight > Containers[0].Weight || Containers[0].Valuable))
         {
-            if(ship.LastPlacementSide == Ship.Side.Left) ship.LeftWeight += container.Weight;
-            else if (ship.LastPlacementSide == Ship.Side.Right) ship.RightWeight += container.Weight;
             Containers.Insert(0, container);
             return true;
         }
@@ -46,9 +41,7 @@ public class Stack
         for (int i = 1; i <= Containers.Count; i++)
         {
             if(i < Containers.Count && !Containers[i].Valuable && Containers[i].Weight > container.Weight) continue;
-            
-            if(ship.LastPlacementSide == Ship.Side.Left) ship.LeftWeight += container.Weight;
-            else if (ship.LastPlacementSide == Ship.Side.Right) ship.RightWeight += container.Weight;
+
             Containers.Insert(i, container);
             return true;
         }

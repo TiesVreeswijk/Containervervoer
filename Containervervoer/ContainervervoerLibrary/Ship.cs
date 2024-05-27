@@ -5,10 +5,15 @@ public class Ship
     public List<Row> Rows { get; } = [];
     public List<Container> NotFittedContainers = [];
     public int Weight;
-    public int LeftWeight;
-    public int RightWeight;
+    private int leftWeight;
+    private int rightWeight;
     public bool Balanced;
-    public Side LastPlacementSide { get; private set; } = Side.Right;
+    public enum Side
+    {
+        Left,
+        Right,
+        Middle 
+    }
 
     public Ship(int length, int width) {
 
@@ -37,6 +42,45 @@ public class Ship
             }
         }
     }
+    
+    public Side GetBestPlacementSide()
+    {
+        leftWeight = 0;
+        rightWeight = 0;
+
+        for (int i = 0; i < Rows.Count; i++)
+        {
+            for (int j = 0; j < Rows[i].Stacks.Count; j++)
+            {
+                int stackWeight = Rows[i].Stacks[j].Containers.Sum(c => c.Weight);
+
+
+                if (j < Rows[i].Stacks.Count / 2 && Rows.Count % 2 == 0)
+                {
+                    leftWeight += stackWeight;
+                }
+                else if (j > Rows[i].Stacks.Count / 2 && Rows.Count % 2 == 0)
+                {
+                    rightWeight += stackWeight;
+                }
+            }
+        }
+
+        // Return the side with the lesser weight
+        if (leftWeight < rightWeight)
+        {
+            return Side.Left;
+        }
+        else if (rightWeight < leftWeight)
+        {
+            return Side.Right;
+        }
+        else
+        {
+            // If the weights are equal, return Middle
+            return Side.Middle;
+        }
+    }
     public void DisplayContainerPlacement()
     {
         for (int i = 0; i < Rows.Count; i++)
@@ -53,59 +97,52 @@ public class Ship
             }
         }
     }
-
-    public enum Side { Left, Right, Middle }
-
-    public Side GetPlacementSide(Container container)
-    {
-        // Alternate between placing containers on the left and right sides
-        if (LastPlacementSide == Side.Middle && RightWeight < LeftWeight)
-        {
-            LastPlacementSide = Side.Right;
-        }
-        else if (LastPlacementSide == Side.Middle && LeftWeight < RightWeight)
-        {
-            LastPlacementSide = Side.Left;
-        }
-        else if (LeftWeight == RightWeight)
-        {
-            LastPlacementSide = Side.Middle;
-        }
-        else
-        {
-            LastPlacementSide = LastPlacementSide == Side.Left ? Side.Right : Side.Left;
-        }
-        
-        return LastPlacementSide;
-    }
     
     private bool TryAddContainer(Ship ship, Container container)
     {
-        bool isFitted = false;
-        Side side = ship.GetPlacementSide(container);
+        Side side = ship.GetBestPlacementSide();
+        Side otherSide = side == Side.Left ? Side.Right : Side.Left;
 
+        if (TryAddContainerToSide(ship, container, side))
+        {
+            ship.Weight += container.Weight;
+            return true;
+        }
+        else if (TryAddContainerToSide(ship, container, otherSide))
+        {
+            ship.Weight += container.Weight;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryAddContainerToSide(Ship ship, Container container, Side side)
+    {
         foreach (var row in ship.Rows)
         {
-            Stack stack;
-            if (side == Side.Middle && row.Stacks.Count % 2 != 0)
-            {
-                stack = row.Stacks[row.Stacks.Count / 2];
-            }
-            else
-            {
-                stack = side == Side.Left ? row.Stacks.First() : row.Stacks.Last();
-            }
+            // Determine the start and end indices of the stacks to iterate over, depending on the side
+            int startIndex = side == Side.Right ? row.Stacks.Count / 2 : 0;
+            int endIndex = side == Side.Left ? row.Stacks.Count / 2 : row.Stacks.Count;
 
-            if (container.Cooled && !stack.ParentRow.HasPower) continue;
+            // Order the stacks by the total weight of their containers
+            var orderedStacks = row.Stacks
+                .Skip(startIndex)
+                .Take(endIndex - startIndex)
+                .OrderBy(s => s.Containers.Sum(c => c.Weight))
+                .ToList();
 
-            if(stack.TryAddContainer(ship, container))
+            foreach (Stack stack in orderedStacks)
             {
-                ship.Weight += container.Weight;
-                isFitted = true;
-                break;
+                if (container.Cooled && !stack.ParentRow.HasPower) continue;
+
+                if(stack.TryAddContainer(ship, container))
+                {
+                    return true;
+                }
             }
         }
 
-        return isFitted;
+        return false;
     }
 }
