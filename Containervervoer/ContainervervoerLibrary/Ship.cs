@@ -5,49 +5,45 @@ public class Ship
     public List<Row> Rows { get; } = [];
     public List<Container> NotFittedContainers = [];
     public int Weight;
-    private int leftWeight;
-    private int rightWeight;
+    public int LeftWeight;
+    public int RightWeight;
     public bool Balanced;
+
     public enum Side
     {
         Left,
         Right,
-        Middle 
+        Middle
     }
 
-    public Ship(int length, int width) {
-
+    public Ship(int length, int width)
+    {
         for (int i = 0; i < length; i++)
         {
             Row row = new Row(width, i);
             row.ParentShip = this;
             Rows.Add(row);
-
         }
     }
-    
+
     public void DistributeContainers(List<Container> containers)
     {
         List<Container> ordered = containers
             .OrderByDescending(c => c.Cooled)
             .ThenByDescending(c => c.Valuable)
             .ThenBy(c => c.Weight).ToList();
-        
+
         foreach (Container container in ordered)
         {
-
             if (!TryAddContainer(this, container))
             {
                 NotFittedContainers.Add(container);
             }
         }
     }
-    
+
     public Side GetBestPlacementSide()
     {
-        leftWeight = 0;
-        rightWeight = 0;
-
         for (int i = 0; i < Rows.Count; i++)
         {
             for (int j = 0; j < Rows[i].Stacks.Count; j++)
@@ -57,30 +53,28 @@ public class Ship
 
                 if (j < Rows[i].Stacks.Count / 2 && Rows.Count % 2 == 0)
                 {
-                    leftWeight += stackWeight;
+                    LeftWeight += stackWeight;
                 }
                 else if (j > Rows[i].Stacks.Count / 2 && Rows.Count % 2 == 0)
                 {
-                    rightWeight += stackWeight;
+                    RightWeight += stackWeight;
                 }
             }
         }
 
-        // Return the side with the lesser weight
-        if (leftWeight < rightWeight)
+        if (LeftWeight < RightWeight)
         {
             return Side.Left;
         }
-        else if (rightWeight < leftWeight)
+        if (RightWeight < LeftWeight)
         {
             return Side.Right;
         }
-        else
-        {
-            // If the weights are equal, return Middle
+
             return Side.Middle;
-        }
+        
     }
+
     public void DisplayContainerPlacement()
     {
         for (int i = 0; i < Rows.Count; i++)
@@ -97,8 +91,8 @@ public class Ship
             }
         }
     }
-    
-    private bool TryAddContainer(Ship ship, Container container)
+
+    public bool TryAddContainer(Ship ship, Container container)
     {
         Side side = ship.GetBestPlacementSide();
         Side otherSide = side == Side.Left ? Side.Right : Side.Left;
@@ -108,7 +102,7 @@ public class Ship
             ship.Weight += container.Weight;
             return true;
         }
-        else if (TryAddContainerToSide(ship, container, otherSide))
+        if (TryAddContainerToSide(ship, container, otherSide))
         {
             ship.Weight += container.Weight;
             return true;
@@ -117,7 +111,7 @@ public class Ship
         return false;
     }
 
-    private bool TryAddContainerToSide(Ship ship, Container container, Side side)
+    public bool TryAddContainerToSide(Ship ship, Container container, Side side)
     {
         foreach (var row in ship.Rows)
         {
@@ -136,7 +130,7 @@ public class Ship
             {
                 if (container.Cooled && !stack.ParentRow.HasPower) continue;
 
-                if(stack.TryAddContainer(ship, container))
+                if (stack.TryAddContainer(ship, container))
                 {
                     return true;
                 }
@@ -144,5 +138,31 @@ public class Ship
         }
 
         return false;
+    }
+    
+    public void IsMinimumWeightReached(List<Container> containers)
+    {
+        int maxWeight = 0;
+        int usedWeight = 0;
+        foreach(Row row in Rows)
+        {
+            foreach(Stack stack in row.Stacks)
+            {
+                maxWeight += Container.MaxWeight + Container.MaxWeightAbove;
+            }
+        }
+        if(maxWeight / 2 > containers.Sum(c => c.Weight)) Console.WriteLine("The minimum weight is not reached");
+        else Console.WriteLine("The minimum weight is reached");
+        
+    }
+    
+    public void IsBalanced()
+    { 
+        int totalWeight = LeftWeight + RightWeight;
+
+        int weightDifference = LeftWeight - RightWeight;
+
+        if(weightDifference <= 0.2 * totalWeight) Console.WriteLine("The ship is balanced");
+        else Console.WriteLine("The ship is not balanced");
     }
 }

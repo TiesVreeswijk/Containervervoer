@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Containervervoer", "Contain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainervervoerLibrary", "ContainervervoerLibrary\ContainervervoerLibrary.csproj", "{699A5861-EBC2-4A40-9BDF-832BABE5B898}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainerVervoerTests", "ContainerVervoerTests\ContainerVervoerTests.csproj", "{AFDEA814-1924-449F-8507-5DAAC115868B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{699A5861-EBC2-4A40-9BDF-832BABE5B898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{699A5861-EBC2-4A40-9BDF-832BABE5B898}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{699A5861-EBC2-4A40-9BDF-832BABE5B898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFDEA814-1924-449F-8507-5DAAC115868B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDEA814-1924-449F-8507-5DAAC115868B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDEA814-1924-449F-8507-5DAAC115868B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDEA814-1924-449F-8507-5DAAC115868B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
