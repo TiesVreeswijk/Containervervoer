@@ -14,6 +14,7 @@ public class Stack
 
     public bool TryAddContainer(Ship ship, Container container)
     {
+        
         if (BlocksValuable()) return false;
 
         if (container.Valuable)
@@ -99,5 +100,15 @@ public class Stack
             Containers.Count) return true;
 
         return false;
+    }
+
+    public bool TopContainerIsValuable()
+    {
+        return Containers.Count > 0 && Containers[0].Valuable;
+    }
+    
+    public bool ContainsValuableContainer()
+    {
+        return Containers.Any(c => c.Valuable);
     }
 }
