@@ -7,9 +7,10 @@ namespace containervervoer
     class Program
     {
         static void Main(string[] args){
-            Ship ship = new Ship(2, 3);
+            Ship ship = new Ship(2, 2);
 
             List<Container> containers = [];
+            
             //containers.Add(new Container(30000, false, false));
             //containers.Add(new Container(30000, true, false));
             //containers.Add(new Container(30000, false, true));
@@ -19,8 +20,13 @@ namespace containervervoer
             containers.Add(new Container(30000, true, false));
             containers.Add(new Container(30000, true, false));
             containers.Add(new Container(30000, true, false));
-
-            
+            containers.Add(new Container(30000, true, false));
+            containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
+           
 
             ship.DistributeContainers(containers);
             ship.DisplayContainerPlacement();

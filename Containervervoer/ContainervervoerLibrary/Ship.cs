@@ -120,12 +120,12 @@ public class Ship
                 !(stack.TopContainerIsValuable() && container.Valuable) &&
                 !(container.Valuable && stack.ContainsValuableContainer())).ToList();
 
-            if (addToFirstHalf)
+            if (addToFirstHalf && firstHalfStacks.Count != 0)
             {
                 selectedStacks.AddRange(firstHalfStacks);
                 LeftWeight += container.Weight;
             }
-            else if (addToLastHalf)
+            else if (addToLastHalf && lastHalfStacks.Count != 0)
             {
                 selectedStacks.AddRange(lastHalfStacks);
                 RightWeight += container.Weight;
