@@ -7,7 +7,7 @@ namespace containervervoer
     class Program
     {
         static void Main(string[] args){
-            Ship ship = new Ship(2, 2);
+            Ship ship = new Ship(4, 2);
 
             List<Container> containers = [];
             
