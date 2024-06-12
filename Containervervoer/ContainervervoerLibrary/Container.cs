@@ -14,4 +14,28 @@ public class Container() {
         Valuable = valuable;
         Cooled = cooled;
     }
+    public string ToWeightString()
+    {
+        return (Weight/1000).ToString();
+    }
+        
+    public override string ToString()
+    {
+        string containerType = "1";
+        if (Valuable && Cooled)
+        {
+            containerType = "4";
+        }
+        else if (Valuable)
+        {
+            containerType = "2";
+        }
+        else if (Cooled)
+        {
+            containerType = "3";
+        }
+
+        return containerType;
+    }
+
 }

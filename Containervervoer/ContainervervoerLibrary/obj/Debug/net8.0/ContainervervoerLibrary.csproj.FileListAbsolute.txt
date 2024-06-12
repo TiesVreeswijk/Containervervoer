@@ -10,3 +10,15 @@ C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\Containervervoer
 C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\refint\ContainervervoerLibrary.dll
 C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.pdb
 C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ref\ContainervervoerLibrary.dll
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\bin\Debug\net8.0\ContainervervoerLibrary.deps.json
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\bin\Debug\net8.0\ContainervervoerLibrary.dll
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\bin\Debug\net8.0\ContainervervoerLibrary.pdb
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.AssemblyInfoInputs.cache
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.AssemblyInfo.cs
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.csproj.CoreCompileInputs.cache
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.sourcelink.json
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.dll
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\refint\ContainervervoerLibrary.dll
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ContainervervoerLibrary.pdb
+C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\ContainervervoerLibrary\obj\Debug\net8.0\ref\ContainervervoerLibrary.dll

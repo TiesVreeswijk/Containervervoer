@@ -7,9 +7,13 @@ public class Ship
     public int Weight;
     public int RightWeight;
     public int LeftWeight;
+    public int Length;
+    public int Width;
     
     public Ship(int length, int width)
     {
+        Length = length;
+        Width = width;
         for (int i = 0; i < length; i++)
         {
             Row row = new Row(width, i);
@@ -17,6 +21,22 @@ public class Ship
             Rows.Add(row);
         }
     }
+    
+    public override string ToString()
+    {
+        var output = "";
+        for (int i = 0; i < Rows.Count; i++)
+        {
+            output += Rows[i].ToString();
+            if (i != Rows.Count - 1)
+            {
+                output += "/";
+            }
+        }
+
+        return output;
+    }
+
 
     public void DistributeContainers(List<Container> containers)
     {

@@ -12,6 +12,21 @@ public class Stack
         Containers = new List<Container>();
     }
 
+    public override string ToString()
+    {
+        var output = "";
+        for (int i = 0; i < Containers.Count; i++)
+        {
+            output += Containers[i].ToString();
+            if (i != Containers.Count - 1)
+            {
+                output += "-";
+            }
+        }
+
+        return output;
+    }
+
     public bool TryAddContainer(Ship ship, Container container)
     {
         

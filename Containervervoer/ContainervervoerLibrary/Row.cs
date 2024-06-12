@@ -18,6 +18,21 @@ public class Row
             Stacks.Add(stack);
         }
     }
+    public override string ToString()
+    {
+        var output = "";
+        for (int i = 0; i < Stacks.Count; i++)
+        {
+            output += Stacks[i].ToString();
+            if (i != Stacks.Count - 1)
+            {
+                output += ",";
+            }
+        }
+
+        return output;
+    }
+
     public bool HasPower => Index == 0;
     public Stack Stack { get; set; }
 }
