@@ -14,6 +14,9 @@ public class Container() {
         Valuable = valuable;
         Cooled = cooled;
     }
+
+    public bool Placed { get; set; }
+
     public string ToWeightString()
     {
         return (Weight/1000).ToString();

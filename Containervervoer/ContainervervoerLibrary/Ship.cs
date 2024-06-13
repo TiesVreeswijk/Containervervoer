@@ -47,12 +47,21 @@ public class Ship
 
         foreach (Container container in ordered)
         {
-            if (!TryAddContainer(this, container))
-            {
-                NotFittedContainers.Add(container);
-            }
+            if (TryAddContainer(this, container)) container.Placed = true;
         }
+
+        foreach (Container container in containers)
+        {
+            if(!container.Placed) if(TryAddContainer(this, container)) container.Placed = true;
+        }
+        foreach(Container container in containers)
+        {
+            if(!container.Placed) NotFittedContainers.Add(container);
+        }
+
     }
+    
+
     public void DisplayContainerPlacement()
     {
         for (int i = 0; i < Rows.Count; i++)
@@ -82,10 +91,17 @@ public class Ship
         foreach (var row in ship.Rows)
         {
             List<Stack> validStacks = ship.getValidStacks(container, ship, row);
+            bool addToLeft = ship.LeftWeight <= ship.RightWeight;
+            bool addToMiddle = row.Stacks.Count % 2 != 0 && row.Stacks.IndexOf(row.Stack) == row.Stacks.Count / 2;
             foreach (var stack in validStacks)
             {
                 if (stack.TryAddContainer(ship, container))
                 {
+                    if (!addToMiddle)
+                    {
+                        if (addToLeft) ship.LeftWeight += container.Weight;
+                        else ship.RightWeight += container.Weight;  
+                    }
                     return true;
                 }
             }
@@ -123,12 +139,12 @@ public class Ship
             if (addToFirstHalf && firstHalfStacks.Count != 0)
             {
                 selectedStacks.AddRange(firstHalfStacks);
-                LeftWeight += container.Weight;
+                //LeftWeight += container.Weight;
             }
             else if (addToLastHalf && lastHalfStacks.Count != 0)
             {
                 selectedStacks.AddRange(lastHalfStacks);
-                RightWeight += container.Weight;
+                //RightWeight += container.Weight;
             }
             else
             {

@@ -7,8 +7,10 @@ public class Stack
     public Row ParentRow { get; set; }
     public List<Container> Containers;
 
+
     public Stack()
     {
+        Weight = 0;
         Containers = new List<Container>();
     }
 
@@ -40,6 +42,7 @@ public class Stack
             }
 
             Containers.Add(container);
+            this.Weight += container.Weight;
             return true;
         }
 
@@ -47,6 +50,7 @@ public class Stack
             (Containers.Count == 0 || container.Weight > Containers[0].Weight || Containers[0].Valuable))
         {
             Containers.Insert(0, container);
+            this.Weight += container.Weight;
             return true;
         }
 
@@ -57,6 +61,7 @@ public class Stack
             if (i < Containers.Count && !Containers[i].Valuable && Containers[i].Weight > container.Weight) continue;
 
             Containers.Insert(i, container);
+            this.Weight += container.Weight;
             return true;
         }
 

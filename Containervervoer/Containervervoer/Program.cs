@@ -6,27 +6,22 @@ namespace containervervoer
 {
     class Program
     {
-        static void Main(string[] args){
+        static void Main(string[] args)
+        {
             Ship ship = new Ship(4, 2);
 
             List<Container> containers = [];
             
-            //containers.Add(new Container(30000, false, false));
-            //containers.Add(new Container(30000, true, false));
-            //containers.Add(new Container(30000, false, true));
-            //containers.Add(new Container(30000, true, true));
+            int normalContainers = 24;
+            int valuableContainers = 8;
+            int cooledContainers = 0;
+            int valuablecooledcontainers = 0;
+            
+            for(int i = 0; i < normalContainers; i++) containers.Add(new Container(30000, false, false));
+            for(int i = 0; i < valuableContainers; i++) containers.Add(new Container(30000, true, false));
+            for(int i = 0; i < cooledContainers; i++) containers.Add(new Container(30000, false, true));
+            for(int i = 0; i < valuablecooledcontainers; i++) containers.Add(new Container(30000, true, true));
 
-
-            containers.Add(new Container(30000, true, false));
-            containers.Add(new Container(30000, true, false));
-            containers.Add(new Container(30000, true, false));
-            containers.Add(new Container(30000, true, false));
-            containers.Add(new Container(30000, false, false));
-            containers.Add(new Container(30000, false, false));
-            containers.Add(new Container(30000, false, false));
-            containers.Add(new Container(30000, false, false));
-            containers.Add(new Container(30000, false, false));
-           
 
             ship.DistributeContainers(containers);
             ship.DisplayContainerPlacement();
@@ -35,6 +30,7 @@ namespace containervervoer
             var url = $"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?width={ship.Width}&length={ship.Length}&stacks={TransposeShipLayout(ship)}&weights={GetContainerWeights(ship)}";
             Console.WriteLine(url);
         }
+        
         public static string TransposeShipLayout(Ship ship)
         {
             var maxStacks = ship.Rows.Max(r => r.Stacks.Count);
