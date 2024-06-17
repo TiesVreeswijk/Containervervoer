@@ -139,12 +139,12 @@ public class Ship
             if (addToFirstHalf && firstHalfStacks.Count != 0)
             {
                 selectedStacks.AddRange(firstHalfStacks);
-                //LeftWeight += container.Weight;
+                
             }
             else if (addToLastHalf && lastHalfStacks.Count != 0)
             {
                 selectedStacks.AddRange(lastHalfStacks);
-                //RightWeight += container.Weight;
+                
             }
             else
             {

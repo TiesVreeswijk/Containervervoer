@@ -124,7 +124,7 @@ public class Stack
 
     public bool TopContainerIsValuable()
     {
-        return Containers.Count > 0 && Containers[0].Valuable;
+        return Containers.Count > 0 && Containers.Last().Valuable;
     }
     
     public bool ContainsValuableContainer()

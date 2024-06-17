@@ -12,7 +12,7 @@ namespace containervervoer
 
             List<Container> containers = [];
             
-            int normalContainers = 24;
+            int normalContainers = 22;
             int valuableContainers = 8;
             int cooledContainers = 0;
             int valuablecooledcontainers = 0;
