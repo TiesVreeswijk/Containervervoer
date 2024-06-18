@@ -7,7 +7,7 @@ namespace containervervoer
     class Program
     {
         static void Main(string[] args){
-            Ship ship = new Ship(4, 2);
+            Ship ship = new Ship(2, 2);
 
             List<Container> containers = [];
             
@@ -26,12 +26,33 @@ namespace containervervoer
             containers.Add(new Container(30000, false, false));
             containers.Add(new Container(30000, false, false));
             containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
+            containers.Add(new Container(30000, false, false));
            
 
             ship.DistributeContainers(containers);
             ship.DisplayContainerPlacement();
-            ship.IsMinimumWeightReached(containers);
-            ship.IsBalanced();
+            if(ship.IsMinimumWeightReached())
+            {
+                Console.WriteLine("Minimum weight reached");
+            }
+            else
+            {
+                Console.WriteLine("Minimum weight not reached");
+            }
+            if (ship.IsBalanced())
+            {
+                Console.WriteLine("Ship is balanced");
+            }
+            else
+            {
+                Console.WriteLine("Ship is not balanced");
+            }
+
+            
             var url = $"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?width={ship.Width}&length={ship.Length}&stacks={TransposeShipLayout(ship)}&weights={GetContainerWeights(ship)}";
             Console.WriteLine(url);
         }

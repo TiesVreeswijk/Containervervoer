@@ -13,6 +13,22 @@ public class Ship
     private int LeftWeight;
     public int Length;
     public int Width;
+    public int MaxWeight
+    {
+        get
+        {
+            int totalWeight = 0;
+            foreach (var row in _rows)
+            {
+                foreach (var stack in row.Stacks)
+                {
+                    totalWeight += Container.MaxWeight + Container.MaxWeightAbove;
+                }
+            }
+            return totalWeight;
+        }
+    }
+    public int MaxWeightDifference => (int) (MaxWeight * 0.2);
     
     public Ship(int length, int width)
     {
@@ -166,33 +182,32 @@ public class Ship
 
         return selectedStacks;
     }
-    public void IsBalanced()
+    public bool IsBalanced()
     { 
         int totalWeight = LeftWeight + RightWeight;
 
         int weightDifference = LeftWeight - RightWeight;
 
-        if(weightDifference <= 0.2 * totalWeight) Console.WriteLine("The ship is balanced");
-        else Console.WriteLine("The ship is not balanced");
+        return (weightDifference <= 0.2 * totalWeight) ;
     }
-    public void IsMinimumWeightReached(List<Container> containers)
+    public bool IsMinimumWeightReached()
     {
-        int maxWeight = 0;
+        int maxWeight = MaxWeight;
         int usedWeight = 0;
-        foreach(Row row in Rows)
+        foreach(var row in Rows)
         {
-            foreach(Stack stack in row.Stacks)
+            foreach(var stack in row.Stacks)
             {
-                maxWeight += Container.MaxWeight + Container.MaxWeightAbove;
+                foreach(var container in stack.Containers)
+                {
+                    usedWeight += container.Weight;
+                }
             }
         }
-        foreach(Container container in containers)
-        {
-            usedWeight += container.Weight;
-        }
-        if(maxWeight / 2 > usedWeight) Console.WriteLine("The minimum weight is not reached");
-        else Console.WriteLine("The minimum weight is reached");
-    
+
+        return (maxWeight / 2 < usedWeight);
+
+
     }
 }
 
