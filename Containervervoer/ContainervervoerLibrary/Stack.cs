@@ -8,7 +8,7 @@ public class Stack
 
     public Row Row { get; set; }
     
-    private List<Container> _containers;
+    private readonly List<Container> _containers;
     public ReadOnlyCollection<Container> Containers => _containers.AsReadOnly();
     
 
@@ -46,8 +46,8 @@ public class Stack
                 return false;
             }
 
-            _containers.Add(container);
-            this.Weight += container.Weight;
+            _containers.Add(container); 
+            Weight += container.Weight;
             return true;
         }
 
@@ -55,7 +55,7 @@ public class Stack
             (_containers.Count == 0 || container.Weight > _containers[0].Weight || _containers[0].Valuable))
         {
             _containers.Insert(0, container);
-            this.Weight += container.Weight;
+            Weight += container.Weight;
             return true;
         }
 
@@ -66,7 +66,7 @@ public class Stack
             if (i < _containers.Count && !_containers[i].Valuable && _containers[i].Weight > container.Weight) continue;
 
             _containers.Insert(i, container);
-            this.Weight += container.Weight;
+            Weight += container.Weight;
             return true;
         }
 
@@ -81,22 +81,22 @@ public class Stack
 
     private bool BlocksValuable()
     {
-        var currentRowIndex = Row.ParentShip.Rows.IndexOf(Row);
+        var currentRowIndex = Row.Ship.Rows.IndexOf(Row);
         var currentStackIndex = Row.Stacks.IndexOf(this);
 
 
         var stackBefore = currentRowIndex > 0
-            ? Row.ParentShip.Rows[currentRowIndex - 1].Stacks[currentStackIndex]
+            ? Row.Ship.Rows[currentRowIndex - 1].Stacks[currentStackIndex]
             : null;
         var stackTwoBefore = currentRowIndex > 1
-            ? Row.ParentShip.Rows[currentRowIndex - 2].Stacks[currentStackIndex]
+            ? Row.Ship.Rows[currentRowIndex - 2].Stacks[currentStackIndex]
             : null;
 
-        var stackAfter = currentRowIndex < Row.ParentShip.Rows.Count - 1
-            ? Row.ParentShip.Rows[currentRowIndex + 1].Stacks[currentStackIndex]
+        var stackAfter = currentRowIndex < Row.Ship.Rows.Count - 1
+            ? Row.Ship.Rows[currentRowIndex + 1].Stacks[currentStackIndex]
             : null;
-        var stackTwoAfter = currentRowIndex < Row.ParentShip.Rows.Count - 2
-            ? Row.ParentShip.Rows[currentRowIndex + 2].Stacks[currentStackIndex]
+        var stackTwoAfter = currentRowIndex < Row.Ship.Rows.Count - 2
+            ? Row.Ship.Rows[currentRowIndex + 2].Stacks[currentStackIndex]
             : null;
 
         if (stackBefore?.Containers.LastOrDefault(c => c.Valuable) != null &&
@@ -114,14 +114,14 @@ public class Stack
 
     private bool CanAcces()
     {
-        int currentRowIndex = Row.ParentShip.Rows.IndexOf(Row);
+        int currentRowIndex = Row.Ship.Rows.IndexOf(Row);
         int currentStackIndex = Row.Stacks.IndexOf(this);
 
         if (currentRowIndex == 0 ||
-            currentRowIndex == Row.ParentShip.Rows.Count - 1 ||
-            Row.ParentShip.Rows[currentRowIndex - 1].Stacks[currentStackIndex].Containers.Count <=
+            currentRowIndex == Row.Ship.Rows.Count - 1 ||
+            Row.Ship.Rows[currentRowIndex - 1].Stacks[currentStackIndex].Containers.Count <=
             _containers.Count ||
-            Row.ParentShip.Rows[currentRowIndex + 1].Stacks[currentStackIndex].Containers.Count <=
+            Row.Ship.Rows[currentRowIndex + 1].Stacks[currentStackIndex].Containers.Count <=
             _containers.Count) return true;
 
         return false;

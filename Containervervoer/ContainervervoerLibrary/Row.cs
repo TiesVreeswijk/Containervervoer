@@ -4,8 +4,9 @@ namespace ContainervervoerLibrary;
 
 public class Row
 {
-    public Ship ParentShip { get; set; }
-    public int Index { get; }
+    public Ship Ship { get; set; }
+    public Stack Stack { get; }
+    private int Index { get; }
     private List<Stack> _stacks = [];
     public ReadOnlyCollection<Stack> Stacks => _stacks.AsReadOnly();
     
@@ -37,5 +38,5 @@ public class Row
     }
 
     public bool HasPower => Index == 0;
-    public Stack Stack { get; set; }
+    
 }

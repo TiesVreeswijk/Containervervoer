@@ -6,14 +6,14 @@ public class Ship
 {
     private List<Row> _rows { get; } = [];
     public ReadOnlyCollection<Row> Rows => _rows.AsReadOnly();
-    private List<Container> _notFittedContainers = [];
+    private readonly List<Container> _notFittedContainers = [];
     
-    private int Weight;
-    private int RightWeight;
-    private int LeftWeight;
-    public int Length;
-    public int Width;
-    public int MaxWeight
+    
+    private int _rightWeight;
+    private int _leftWeight;
+    public readonly int Length;
+    public readonly int Width;
+    private int MaxWeight
     {
         get
         {
@@ -36,8 +36,10 @@ public class Ship
         Width = width;
         for (int i = 0; i < length; i++)
         {
-            Row row = new Row(width, i);
-            row.ParentShip = this;
+            Row row = new Row(width, i)
+            {
+                Ship = this
+            };
             _rows.Add(row);
         }
     }
@@ -110,8 +112,8 @@ public class Ship
     {
         foreach (var row in ship.Rows)
         {
-            List<Stack> validStacks = ship.getValidStacks(container, ship, row);
-            bool addToLeft = ship.LeftWeight <= ship.RightWeight;
+            List<Stack> validStacks = ship.GetValidStacks(container, ship, row);
+            bool addToLeft = ship._leftWeight <= ship._rightWeight;
             bool addToMiddle = row.Stacks.Count % 2 != 0 && row.Stacks.IndexOf(row.Stack) == row.Stacks.Count / 2;
             foreach (var stack in validStacks)
             {
@@ -119,8 +121,8 @@ public class Ship
                 {
                     if (!addToMiddle)
                     {
-                        if (addToLeft) ship.LeftWeight += container.Weight;
-                        else ship.RightWeight += container.Weight;  
+                        if (addToLeft) ship._leftWeight += container.Weight;
+                        else ship._rightWeight += container.Weight;  
                     }
                     return true;
                 }
@@ -130,17 +132,17 @@ public class Ship
         return false;
     }
 
-    private List<Stack> getValidStacks(Container container, Ship ship, Row row)
+    private List<Stack> GetValidStacks(Container container, Ship ship, Row row)
     {
         int halfRow = row.Stacks.Count / 2;
         bool isRowEven = row.Stacks.Count % 2 == 0;
 
-        bool addToFirstHalf = ship.LeftWeight <= ship.RightWeight;
-        bool addToLastHalf = ship.LeftWeight > ship.RightWeight;
+        bool addToFirstHalf = ship._leftWeight <= ship._rightWeight;
+        bool addToLastHalf = ship._leftWeight > ship._rightWeight;
 
         List<Stack> selectedStacks = new List<Stack>();
 
-        if (!isRowEven && ship.LeftWeight == ship.RightWeight &&
+        if (!isRowEven && ship._leftWeight == ship._rightWeight &&
             row.Stacks[halfRow].Weight + container.Weight <= Container.MaxWeightAbove &&
             !(row.Stacks[halfRow].TopContainerIsValuable() && container.Valuable ||
               (container.Valuable && container.Cooled)))
@@ -184,9 +186,9 @@ public class Ship
     }
     public bool IsBalanced()
     { 
-        int totalWeight = LeftWeight + RightWeight;
+        int totalWeight = _leftWeight + _rightWeight;
 
-        int weightDifference = LeftWeight - RightWeight;
+        int weightDifference = _leftWeight - _rightWeight;
 
         return (weightDifference <= 0.2 * totalWeight) ;
     }
