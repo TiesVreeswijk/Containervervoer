@@ -1,12 +1,16 @@
-﻿namespace ContainervervoerLibrary;
+﻿using System.Collections.ObjectModel;
+
+namespace ContainervervoerLibrary;
 
 public class Ship
 {
-    public List<Row> Rows { get; } = [];
-    public List<Container> NotFittedContainers = [];
-    public int Weight;
-    public int RightWeight;
-    public int LeftWeight;
+    private List<Row> _rows { get; } = [];
+    public ReadOnlyCollection<Row> Rows => _rows.AsReadOnly();
+    private List<Container> _notFittedContainers = [];
+    
+    private int Weight;
+    private int RightWeight;
+    private int LeftWeight;
     public int Length;
     public int Width;
     
@@ -18,7 +22,7 @@ public class Ship
         {
             Row row = new Row(width, i);
             row.ParentShip = this;
-            Rows.Add(row);
+            _rows.Add(row);
         }
     }
     
@@ -27,7 +31,7 @@ public class Ship
         var output = "";
         for (int i = 0; i < Rows.Count; i++)
         {
-            output += Rows[i].ToString();
+            output += _rows[i].ToString();
             if (i != Rows.Count - 1)
             {
                 output += "/";
@@ -56,7 +60,7 @@ public class Ship
         }
         foreach(Container container in containers)
         {
-            if(!container.Placed) NotFittedContainers.Add(container);
+            if(!container.Placed) _notFittedContainers.Add(container);
         }
 
     }
@@ -67,10 +71,10 @@ public class Ship
         for (int i = 0; i < Rows.Count; i++)
         {
             Console.WriteLine($"Row {i + 1}:");
-            for (int j = 0; j < Rows[i].Stacks.Count; j++)
+            for (int j = 0; j < _rows[i].Stacks.Count; j++)
             {
-                Console.WriteLine($"\tStack {j + 1}: {Rows[i].Stacks[j].Containers.Count} containers");
-                foreach (var container in Rows[i].Stacks[j].Containers)
+                Console.WriteLine($"\tStack {j + 1}: {_rows[i].Stacks[j].Containers.Count} containers");
+                foreach (var container in _rows[i].Stacks[j].Containers)
                 {
                     string containerType = container.Cooled ? "Cooled" : container.Valuable ? "Valuable" : "Normal";
                     Console.WriteLine($"\t\tContainer: Weight = {container.Weight}, Type = {containerType}");
@@ -78,7 +82,7 @@ public class Ship
             }
         }
 
-        foreach (var container in NotFittedContainers)
+        foreach (var container in _notFittedContainers)
         {
             string containerType = container.Cooled ? "Cooled" : container.Valuable ? "Valuable" : "Normal";
             Console.WriteLine(

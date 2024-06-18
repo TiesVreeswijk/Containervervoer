@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Containervervoer
-build_property.ProjectDir = C:\Users\Ties\RiderProjects\ContainerTransport\Containervervoer\Containervervoer\
+build_property.ProjectDir = C:\Users\tiesv\RiderProjects\Containervervoer\Containervervoer\Containervervoer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

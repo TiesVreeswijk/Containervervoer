@@ -1,10 +1,13 @@
+using System.Collections.ObjectModel;
+
 namespace ContainervervoerLibrary;
 
 public class Row
 {
     public Ship ParentShip { get; set; }
     public int Index { get; }
-    public List<Stack> Stacks = [];
+    private List<Stack> _stacks = [];
+    public ReadOnlyCollection<Stack> Stacks => _stacks.AsReadOnly();
     
 
     public Row(int length, int index)
@@ -14,8 +17,8 @@ public class Row
         for (int i = 0; i < length; i++)
         {
             Stack stack = new Stack();
-            stack.ParentRow = this;
-            Stacks.Add(stack);
+            stack.Row = this;
+            _stacks.Add(stack);
         }
     }
     public override string ToString()
